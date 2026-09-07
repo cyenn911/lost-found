@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@tanstack/react-query": "^5.102.8",
+    "lucide-react": "^1.41.0",
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwindcss": "^4.3.3"
+  },
+  "name": "temu-lost-found",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node node_modules/next/dist/bin/next dev --hostname 127.0.0.1 --webpack",
+    "build": "node node_modules/next/dist/bin/next build --webpack",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
+    "test": "node --test tests/queue.test.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "typescript": "^7.0.2"
+  },
+  "type": "module"
+}
