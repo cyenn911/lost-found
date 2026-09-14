@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@fontsource-variable/manrope';
+import './modern.css';
+import './reference.css';
 
 export const metadata: Metadata = {
   title: 'Temu — Bantu barang menemukan jalan pulang',

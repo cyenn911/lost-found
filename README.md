@@ -38,17 +38,21 @@ Next.js App Router + React + TypeScript + Tailwind CSS v4 + Lucide. Next.js 16.3
 
 - `app/page.tsx`: tampilan, form, modal, state demo.
 - `app/globals.css`: tema dan layout responsif.
+- `app/modern.css`: komponen, formulir, dan layout aplikasi.
+- `app/reference.css`: tema hijau-krem dan landing page berdasarkan referensi visual.
 - `lib/demo.ts`: data contoh dan transisi antrean murni.
 - `tests/queue.test.mjs`: validasi FIFO dan satu pekerjaan aktif.
 - `public/images/`: foto contoh lokal.
 
 ## Referensi UI/UX
 
-[iLost](https://ilost.co/) — referensi alur pencarian langsung, lokasi, serta jalur terpisah untuk melaporkan penemuan. Tampilan Temu dirancang sendiri: navigasi samping, palet biru, kartu foto, dan panel antrean sesuai kebutuhan PRD. Tidak menyalin identitas merek atau aset iLost.
+[iLost](https://ilost.co/) — referensi alur pencarian langsung, lokasi, serta jalur terpisah untuk melaporkan penemuan. Desain visual mengikuti referensi gambar yang diberikan: bingkai sage, kanvas krem, foto taman, pencarian mengambang, dan kartu temuan. Identitas serta konten tetap milik Temu.
 
 ## Kredit foto
 
 Foto hanya ilustrasi, bukan barang temuan nyata. Foto diunduh ke proyek agar tidak bergantung pada URL CDN saat digunakan.
+
+- Taman (hero): [Amine BELHAIZA / Unsplash](https://unsplash.com/photos/sh98Qcs8Ub4).
 
 - Dompet: [Josh Withers / Pexels](https://www.pexels.com/photo/brown-leather-wallet-on-white-back-15763948/).
 - Ransel: [Luis Quintero / Unsplash](https://unsplash.com/photos/person-in-black-jacket-holding-black-backpack-8TSqJoI-NVs).
