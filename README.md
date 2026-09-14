@@ -1,6 +1,6 @@
 # Temu — Lost & Found frontend
 
-Frontend interaktif berbahasa Indonesia berdasarkan `PRD-LostFound.md` versi 1.1.
+Frontend interaktif berbahasa Indonesia berdasarkan `PRD-LostFound.md` versi 1.1, dengan lingkup layanan Cimahi Utara, Cimahi Tengah, Cimahi Selatan, Padalarang, Batujajar, dan Ngamprah.
 
 ## Menjalankan
 
@@ -15,7 +15,8 @@ Scripts memanggil entrypoint Node secara langsung agar bekerja pada folder Windo
 
 ## Fitur frontend
 
-- Pencarian kata kunci, kota, kategori, sumber, dan pengurutan temuan.
+- Halaman masuk/daftar wajib sebelum aplikasi dapat diakses, termasuk lewat tautan hash langsung.
+- Pencarian kata kunci, enam wilayah layanan, kategori, sumber, dan pengurutan temuan.
 - Detail barang, pengajuan kecocokan demo, dan konfirmasi pengembalian oleh pengguna.
 - Form kehilangan/penemuan dengan validasi tanggal, foto wajib untuk penemuan, pratinjau foto, pilihan akun lokal, dan persetujuan penyebaran.
 - Foto JPG/PNG/WebP maksimal 5 MB, diperkecil secara lokal sebelum disimpan.
@@ -28,6 +29,10 @@ Scripts memanggil entrypoint Node secara langsung agar bekerja pada folder Windo
 
 Semua item awal, akun, dan hasil adalah **data contoh**, ditandai pada UI. Laporan/profil/notifikasi tersimpan di localStorage browser ini. Jangan gunakan informasi sensitif. Ini bukan autentikasi sungguhan atau penyimpanan multi-user.
 
+Daftar akun demo menggunakan nama, email, wilayah, kata sandi minimal 8 karakter, dan konfirmasi kata sandi. Login memverifikasi email serta kata sandi akun yang sudah didaftarkan. Kata sandi disimpan sebagai hash PBKDF2 dengan salt, bukan teks asli. Ini tetap simulasi di browser, bukan kontrol akses produksi.
+
+Sesi demo berada di sessionStorage (maksimal 12 jam); refresh di tab yang sama mempertahankan sesi. Logout mengembalikan pengguna ke halaman masuk. Laporan dan notifikasi dipisahkan per ID akun, dan akun baru dimulai tanpa laporan pribadi. Data lama `temu-demo-v1` tetap disimpan tetapi tidak dipakai untuk login atau dimasukkan ke akun baru. Membuka maupun mengirim kedua jenis laporan memeriksa sesi; wilayah di luar daftar layanan ditolak. Akun sosial berakhiran `_demo` adalah placeholder, bukan tujuan pengiriman sungguhan.
+
 Simulasi antrean hanya berlaku pada halaman/browser ini. Jeda menghentikan simulasi; lanjutkan memulai ulang durasi job aktif. Refresh mempertahankan laporan, tetapi pengguna perlu melanjutkan simulasi. Tidak ada scraping, DM, email, atau operasi Supabase/OpenClaw nyata. Posisi antrean demo hanya menghitung laporan lokal. Kecocokan demo dicatat sebagai notifikasi; bukti kepemilikan tidak dikirim atau disimpan.
 
 Integrasi produksi berikutnya: Supabase Auth/Storage/RLS, enqueue transaksi database, slot worker global yang diklaim atomik, n8n dispatcher, callback OpenClaw terautentikasi, retry/timeout/recovery, matching, dan realtime. Backend tersebut harus menegakkan konkurensi global; state React bukan pengaman server.
@@ -37,11 +42,14 @@ Integrasi produksi berikutnya: Supabase Auth/Storage/RLS, enqueue transaksi data
 Next.js App Router + React + TypeScript + Tailwind CSS v4 + Lucide. Next.js 16.3.4 dipakai sebagai pengganti versi 14 pada PRD setelah pemeriksaan paket menemukan advisori di versi lama. Arsitektur frontend tetap App Router dan dapat dihubungkan ke backend dalam PRD. TanStack Query tersedia untuk integrasi data server berikutnya.
 
 - `app/page.tsx`: tampilan, form, modal, state demo.
+- `app/auth-screen.tsx` dan `app/auth.css`: form masuk/daftar dan tampilan responsif.
+- `lib/demo-auth.ts`: akun serta sesi demo lokal dan pemisahan data per akun.
 - `app/globals.css`: tema dan layout responsif.
 - `app/modern.css`: komponen, formulir, dan layout aplikasi.
 - `app/reference.css`: tema hijau-krem dan landing page berdasarkan referensi visual.
 - `lib/demo.ts`: data contoh dan transisi antrean murni.
 - `tests/queue.test.mjs`: validasi FIFO dan satu pekerjaan aktif.
+- `tests/auth.test.mjs`: login, sesi, isolasi akun, kegagalan penyimpanan, dan batas wilayah.
 - `public/images/`: foto contoh lokal.
 
 ## Referensi UI/UX
